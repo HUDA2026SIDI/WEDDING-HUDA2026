@@ -1,24 +1,26 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hussaina & Dauda - Wedding Album</title>
+  <title>Dauda & Hussaina - Wedding Album</title>
   <style>
     :root {
-      --primary-color: #5d253b;
-      --primary-hover: #481a2d;
-      --bg-color: #fcf9f5;
-      --text-dark: #2c2c2c;
-      --text-muted: #726e6b;
-      --accent-gold: #c5a059;
+      --brand-dark: #3b2319;       /* Deep Silk Chocolate */
+      --brand-rust: #5a2318;       /* Rich Burnt Rust */
+      --brand-copper: #b85d30;     /* Warm Terracotta */
+      --bg-cream: #f8f3ed;         /* Light Champagne Silk Background */
+      --card-bg: #efe6dc;          /* Warm Silk Accent Box */
+      --text-dark: #231610;        
+      --text-muted: #6e584c;      
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
-      background-color: var(--bg-color);
+      background-color: var(--bg-cream);
       color: var(--text-dark);
       display: flex;
       flex-direction: column;
@@ -26,60 +28,53 @@
       min-height: 100vh;
     }
 
-    .container {
+    .app-container {
       width: 100%;
       max-width: 480px;
       min-height: 100vh;
-      background-color: #ffffff;
+      background-color: var(--bg-cream);
       display: flex;
       flex-direction: column;
       position: relative;
-      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      box-shadow: 0 0 25px rgba(0,0,0,0.08);
+      overflow: hidden;
     }
 
-    /* Hero Section */
-    .hero {
-      position: relative;
-      height: 320px;
-      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('hero-bg.jpg') center/cover;
+    /* ================= PAGE 1: HOME PAGE ================= */
+    #home-page {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Hero Header using hero.jpg */
+    .hero-section {
+      padding: 30px 20px 20px;
       text-align: center;
-      color: #ffffff;
-      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f1e7dd;
+      border-bottom: 1px solid #e2d3c4;
     }
 
-    .hero-subtitle {
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.9;
-      margin-bottom: 6px;
-    }
-
-    .hero-title {
-      font-family: Georgia, serif;
-      font-size: 2.2rem;
-      font-weight: normal;
-      margin-bottom: 4px;
-    }
-
-    .hero-date {
-      font-size: 0.95rem;
-      font-style: italic;
-      opacity: 0.95;
-      margin-bottom: 8px;
+    .hero-logo {
+      max-width: 240px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 12px;
     }
 
     .hero-tagline {
-      font-size: 0.85rem;
-      opacity: 0.85;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--brand-rust);
+      opacity: 0.9;
     }
 
-    /* Content Area */
-    .content {
+    /* Main Content Body */
+    .content-section {
       padding: 32px 24px;
       text-align: center;
       flex: 1;
@@ -89,86 +84,248 @@
     }
 
     .star-icon {
-      color: var(--accent-gold);
+      color: var(--brand-copper);
       font-size: 1.2rem;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .main-heading {
       font-family: Georgia, serif;
-      font-size: 1.8rem;
-      color: var(--primary-color);
+      font-size: 1.85rem;
+      color: var(--brand-dark);
       margin-bottom: 12px;
       line-height: 1.3;
+      font-weight: normal;
     }
 
-    .description {
+    .sub-text {
       color: var(--text-muted);
       font-size: 0.95rem;
       line-height: 1.5;
       margin-bottom: 32px;
+      max-width: 340px;
     }
 
-    /* Buttons & Links */
-    .btn-primary {
-      background-color: var(--primary-color);
+    /* Main Share Button */
+    .btn-share {
+      background-color: var(--brand-rust);
       color: #ffffff;
-      text-decoration: none;
+      border: none;
       font-weight: 600;
-      padding: 16px 28px;
-      border-radius: 30px;
+      padding: 18px 28px;
+      border-radius: 35px;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-size: 1rem;
-      box-shadow: 0 4px 12px rgba(93, 37, 59, 0.25);
-      transition: background-color 0.2s ease;
+      gap: 12px;
+      font-size: 1.05rem;
+      box-shadow: 0 6px 18px rgba(90, 35, 24, 0.28);
+      cursor: pointer;
       width: 100%;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+      transition: transform 0.1s ease;
     }
 
-    .btn-primary:active {
-      background-color: var(--primary-hover);
+    .btn-share:active {
+      transform: scale(0.98);
+      background-color: var(--brand-dark);
     }
 
-    .link-secondary {
-      color: var(--primary-color);
+    .link-view {
+      color: var(--brand-rust);
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      cursor: pointer;
+      background: none;
+      border: none;
       margin-bottom: 24px;
     }
 
-    .qr-trigger-btn {
-      background: none;
-      border: 1px solid var(--accent-gold);
-      color: var(--text-dark);
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    /* Bottom Footer Bar */
+    .footer-bar {
       margin-top: auto;
-    }
-
-    /* Footer Bar */
-    .footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 16px 24px;
-      border-top: 1px solid #eee;
+      border-top: 1px solid #e2d3c4;
       font-size: 0.85rem;
+      color: var(--text-muted);
+      background-color: #f1e7dd;
+    }
+
+    /* ================= PAGE 2: GALLERY PAGE ================= */
+    #memories-page {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: var(--bg-cream);
+    }
+
+    .gallery-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #e2d3c4;
+      background-color: #ffffff;
+    }
+
+    .nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #d8c6b5;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--brand-dark);
+    }
+
+    .gallery-title-container {
+      text-align: center;
+    }
+
+    .gallery-subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--brand-copper);
+      font-weight: bold;
+    }
+
+    .gallery-title {
+      font-family: Georgia, serif;
+      font-size: 1.2rem;
+      color: var(--brand-dark);
+    }
+
+    .gallery-body {
+      padding: 24px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .gallery-frame {
+      width: 100%;
+      height: 60vh;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .floating-share-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--brand-rust);
+      color: #ffffff;
+      border: none;
+      padding: 14px 22px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      cursor: pointer;
+      z-index: 90;
+    }
+
+    /* ================= UPLOAD BOTTOM SHEET ================= */
+    .sheet-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.45);
+      z-index: 500;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .sheet-card {
+      background-color: #ffffff;
+      width: 100%;
+      max-width: 480px;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      padding: 20px 24px 32px;
+      position: relative;
+      animation: slideUp 0.25s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .sheet-drag-handle {
+      width: 40px;
+      height: 4px;
+      background-color: #d8c6b5;
+      border-radius: 2px;
+      margin: 0 auto 16px;
+    }
+
+    .sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .sheet-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--card-bg);
+      padding: 16px;
+      border-radius: 16px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: var(--text-dark);
+      cursor: pointer;
+    }
+
+    .sheet-option-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .sheet-icon-box {
+      width: 44px;
+      height: 44px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .sheet-option-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--brand-dark);
+    }
+
+    .sheet-option-sub {
+      font-size: 0.8rem;
       color: var(--text-muted);
     }
 
-    /* QR Code Modal / Popup */
+    /* ================= QR POPUP MODAL ================= */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -183,7 +340,7 @@
     .modal-card {
       background: white;
       padding: 24px;
-      border-radius: 16px;
+      border-radius: 20px;
       text-align: center;
       max-width: 320px;
       width: 100%;
@@ -195,72 +352,188 @@
       max-width: 220px;
       height: auto;
       margin: 16px 0;
-      border-radius: 8px;
+      border-radius: 12px;
     }
 
     .close-btn {
       position: absolute;
-      top: 12px; right: 16px;
+      top: 14px; right: 18px;
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       cursor: pointer;
       color: var(--text-muted);
+    }
+
+    #camera-photo-input, #camera-video-input {
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="hero">
-      <div class="hero-subtitle">Our Wedding</div>
-      <h1 class="hero-title">Hussaina & Dauda</h1>
-      <div class="hero-date">2026</div>
-      <div class="hero-tagline">We'll love to see our memories from your view</div>
+  <div class="app-container">
+
+    <div id="home-page">
+      <div class="hero-section">
+        <img src="hero.jpg" alt="Dauda & Hussaina Wedding Banner" class="hero-logo">
+        <div class="hero-tagline">We'll love to see our memories from your view</div>
+      </div>
+
+      <div class="content-section">
+        <div class="star-icon">✦</div>
+        <h1 class="main-heading">Share the moments<br>you captured</h1>
+        <p class="sub-text">Every smile, dance, laugh, and beautiful detail becomes part of the story we will keep.</p>
+
+        <button class="btn-share" onclick="openUploadSheet()">
+          <span>📷</span> Share Your Memories
+        </button>
+
+        <button class="link-view" onclick="showMemoriesPage()">
+          <span>💛</span> View Wedding Memories →
+        </button>
+      </div>
+
+      <div class="footer-bar">
+        <span>Dauda & Hussaina</span>
+        <a href="javascript:void(0)" onclick="openQRModal()" style="color: var(--brand-rust); text-decoration: none; font-weight: bold;">Wedding QR Code</a>
+      </div>
     </div>
 
-    <div class="content">
-      <div class="star-icon">✦</div>
-      <h2 class="main-heading">Share the moments<br>you captured</h2>
-      <p class="description">Every smile, dance, laugh, and beautiful detail becomes part of the story we will keep.</p>
+    <div id="memories-page">
+      <div class="gallery-header">
+        <button class="nav-btn" onclick="showHomePage()">←</button>
+        <div class="gallery-title-container">
+          <div class="gallery-subtitle">DAUDA & HUSSAINA</div>
+          <div class="gallery-title">Memories from Huda2026</div>
+        </div>
+        <button class="nav-btn" onclick="refreshGallery()">↻</button>
+      </div>
 
-      <a href="https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6" target="_blank" class="btn-primary">
-        <span>📷</span> Share Your Memories
-      </a>
+      <div class="gallery-body">
+        <div class="star-icon">✦</div>
+        <p class="sub-text" style="margin-bottom: 20px;">A wedding album filled with the moments our guests captured on 28 November 2026.</p>
 
-      <a href="https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6" target="_blank" class="link-secondary">
-        <span>💛</span> View Wedding Memories →
-      </a>
+        <iframe id="gallery-iframe" class="gallery-frame" src="https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6"></iframe>
+      </div>
 
-      <button class="qr-trigger-btn" onclick="openQRModal()">
-        <span>📱</span> Scan QR Code
+      <button class="floating-share-btn" onclick="openUploadSheet()">
+        <span>📷</span> Share
       </button>
     </div>
 
-    <div class="footer">
-      <span>Hussaina & Dauda</span>
-      <a href="javascript:void(0)" onclick="openQRModal()" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">Wedding QR Code</a>
+  </div>
+
+  <div class="sheet-overlay" id="uploadSheet" onclick="closeUploadSheet()">
+    <div class="sheet-card" onclick="event.stopPropagation()">
+      <div class="sheet-drag-handle"></div>
+      
+      <div class="sheet-header">
+        <div>
+          <div style="font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: var(--brand-copper); font-weight: bold;">DAUDA & HUSSAINA</div>
+          <h2 style="font-family: Georgia, serif; color: var(--brand-dark); font-size: 1.4rem;">Share Your Memories</h2>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Choose how you would like to add your moment.</p>
+        </div>
+        <button class="close-btn" onclick="closeUploadSheet()">&times;</button>
+      </div>
+
+      <label for="camera-photo-input" class="sheet-option">
+        <div class="sheet-option-left">
+          <div class="sheet-icon-box">📷</div>
+          <div>
+            <div class="sheet-option-title">Take a Photo</div>
+            <div class="sheet-option-sub">Open your camera</div>
+          </div>
+        </div>
+        <span style="color: var(--text-muted);">›</span>
+      </label>
+
+      <a href="https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6" target="_blank" class="sheet-option">
+        <div class="sheet-option-left">
+          <div class="sheet-icon-box">🖼️</div>
+          <div>
+            <div class="sheet-option-title">Upload Photos</div>
+            <div class="sheet-option-sub">Choose one or several photos</div>
+          </div>
+        </div>
+        <span style="color: var(--text-muted);">›</span>
+      </a>
+
+      <label for="camera-video-input" class="sheet-option">
+        <div class="sheet-option-left">
+          <div class="sheet-icon-box">🎥</div>
+          <div>
+            <div class="sheet-option-title">Record a Video</div>
+            <div class="sheet-option-sub">Capture a moment now</div>
+          </div>
+        </div>
+        <span style="color: var(--text-muted);">›</span>
+      </label>
+
+      <a href="https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6" target="_blank" class="sheet-option">
+        <div class="sheet-option-left">
+          <div class="sheet-icon-box">📁</div>
+          <div>
+            <div class="sheet-option-title">Upload Videos</div>
+            <div class="sheet-option-sub">Choose one or several videos</div>
+          </div>
+        </div>
+        <span style="color: var(--text-muted);">›</span>
+      </a>
     </div>
   </div>
+
+  <input type="file" id="camera-photo-input" accept="image/*" capture="environment" onchange="redirectToAlbum()">
+  <input type="file" id="camera-video-input" accept="video/*" capture="environment" onchange="redirectToAlbum()">
 
   <div class="modal-overlay" id="qrModal" onclick="closeQRModal()">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="close-btn" onclick="closeQRModal()">&times;</button>
-      <h3 style="font-family: Georgia, serif; color: var(--primary-color);">Scan to Join Album</h3>
+      <h3 style="font-family: Georgia, serif; color: var(--brand-dark);">Scan to Join Album</h3>
       <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Let nearby guests scan this code with their camera!</p>
       
       <img src="qr-code.png" alt="Wedding QR Code">
       
-      <p style="font-size: 0.8rem; color: var(--accent-gold); font-weight: bold;">HUSSAINA & DAUDA</p>
+      <p style="font-size: 0.8rem; color: var(--brand-copper); font-weight: bold; letter-spacing: 1px;">DAUDA & HUSSAINA</p>
     </div>
   </div>
 
   <script>
+    function showMemoriesPage() {
+      document.getElementById('home-page').style.display = 'none';
+      document.getElementById('memories-page').style.display = 'flex';
+      window.scrollTo(0, 0);
+    }
+
+    function showHomePage() {
+      document.getElementById('memories-page').style.display = 'none';
+      document.getElementById('home-page').style.display = 'flex';
+      window.scrollTo(0, 0);
+    }
+
+    function refreshGallery() {
+      const iframe = document.getElementById('gallery-iframe');
+      iframe.src = iframe.src;
+    }
+
+    function openUploadSheet() {
+      document.getElementById('uploadSheet').style.display = 'flex';
+    }
+
+    function closeUploadSheet() {
+      document.getElementById('uploadSheet').style.display = 'none';
+    }
+
     function openQRModal() {
       document.getElementById('qrModal').style.display = 'flex';
     }
+
     function closeQRModal() {
       document.getElementById('qrModal').style.display = 'none';
+    }
+
+    function redirectToAlbum() {
+      window.open('https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6', '_blank');
     }
   </script>
 
