@@ -59,6 +59,7 @@
       font-size: 1rem; font-weight: 600; width: 100%; max-width: 340px;
       cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       box-shadow: 0 10px 25px rgba(184, 74, 28, 0.3); transition: transform 0.2s;
+      text-decoration: none;
     }
     .btn-main:active { transform: scale(0.98); }
 
@@ -110,6 +111,7 @@
       background: var(--card-white); border-radius: 18px; padding: 1.1rem 1.2rem;
       margin-bottom: 0.8rem; display: flex; align-items: center; gap: 1rem;
       border: 1px solid #EFE5D8; cursor: pointer; text-align: left; transition: background 0.2s;
+      text-decoration: none;
     }
     .option-card:hover { background: #FAF5EE; }
     .option-icon { width: 44px; height: 44px; background: #F8EFE6; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
@@ -128,7 +130,21 @@
       font-size: 1.1rem; color: var(--bronze-chocolate);
     }
     .gallery-body { padding: 1.8rem 1.5rem; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 1.5rem; }
+
+    /* Google Photos Album Banner Card */
+    .gphotos-card {
+      background: var(--card-white);
+      border: 1px solid #EFE5D8;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+    .gphotos-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--bronze-chocolate); margin-bottom: 0.4rem; }
+    .gphotos-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 1rem; }
     .gallery-item { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; background: #e0d5c8; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
     /* Floating Snap / Upload Button in Gallery */
@@ -198,9 +214,18 @@
       </div>
 
       <div class="gallery-body">
+        <div class="gphotos-card">
+          <div style="font-size: 1.5rem; margin-bottom: 0.3rem;">🖼️</div>
+          <h3>Google Photos Shared Album</h3>
+          <p>Browse all shared photos in full high quality directly on Google Photos.</p>
+          <a href="https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6" target="_blank" rel="noopener noreferrer" class="btn-main" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">
+            Open Google Photos Album ➔
+          </a>
+        </div>
+
         <div style="font-size: 1.2rem; color: var(--terracotta-burnt);">✦</div>
-        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--bronze-chocolate); margin: 0.3rem 0;">Memories Captured</h2>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">A wedding album filled with moments captured by our guests.</p>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--bronze-chocolate); margin: 0.3rem 0;">Web Uploads</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Moments added directly through camera uploads.</p>
         
         <div class="gallery-grid" id="photoContainer">
           <p style="grid-column: span 2; color: var(--text-muted); padding: 2rem;">Loading uploaded memories...</p>
@@ -232,19 +257,19 @@
         <div class="option-icon">📷</div>
         <div style="flex: 1;">
           <div class="option-title">Take a Photo</div>
-          <div class="option-sub">Open your camera</div>
+          <div class="option-sub">Open your camera to snap instantly</div>
         </div>
         <div style="color: #ccc;">❯</div>
       </div>
 
-      <div class="option-card" onclick="triggerUpload('image/*', null)">
+      <a href="https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6" target="_blank" rel="noopener noreferrer" class="option-card">
         <div class="option-icon">🖼️</div>
         <div style="flex: 1;">
-          <div class="option-title">Upload Photos</div>
-          <div class="option-sub">Choose one or several photos</div>
+          <div class="option-title">Open Google Photos Album</div>
+          <div class="option-sub">View & add directly to Google Photos</div>
         </div>
         <div style="color: #ccc;">❯</div>
-      </div>
+      </a>
 
       <div class="option-card" onclick="triggerUpload('video/*', 'environment')">
         <div class="option-icon">📹</div>
@@ -255,11 +280,11 @@
         <div style="color: #ccc;">❯</div>
       </div>
 
-      <div class="option-card" onclick="triggerUpload('video/*', null)">
+      <div class="option-card" onclick="triggerUpload('image/*,video/*', null)">
         <div class="option-icon">📁</div>
         <div style="flex: 1;">
-          <div class="option-title">Upload Videos</div>
-          <div class="option-sub">Choose one or several videos</div>
+          <div class="option-title">Upload File from Device</div>
+          <div class="option-sub">Choose photo or video from gallery</div>
         </div>
         <div style="color: #ccc;">❯</div>
       </div>
@@ -351,10 +376,10 @@
         if (data && data.photos && data.photos.length > 0) {
           container.innerHTML = data.photos.map(url => `<img src="${url}" class="gallery-item" alt="Wedding Memory">`).join('');
         } else {
-          container.innerHTML = '<p style="grid-column: span 2; color: var(--text-muted); padding: 2rem;">No uploaded photos yet. Be the first to share!</p>';
+          container.innerHTML = '<p style="grid-column: span 2; color: var(--text-muted); padding: 2rem;">No web uploads yet. Open the Google Photos album above to view guest photos!</p>';
         }
       } catch (err) {
-        container.innerHTML = '<p style="grid-column: span 2; color: var(--text-muted); padding: 2rem;">No memories found yet. Tap Snap Photo to upload!</p>';
+        container.innerHTML = '<p style="grid-column: span 2; color: var(--text-muted); padding: 2rem;">Explore all guest photos via the Google Photos album above!</p>';
       }
     }
   </script>
