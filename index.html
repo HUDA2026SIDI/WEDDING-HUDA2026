@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Wedding Gallery</title>
+  <style>
+    body { font-family: system-ui, sans-serif; text-align: center; padding: 2rem; background: #faf5f0; color: #333; }
+    .card { background: white; padding: 2.5rem 1.5rem; border-radius: 16px; max-width: 420px; margin: 0 auto; box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+    h1 { color: #8b6b3e; margin-bottom: 0.5rem; }
+    input[type="file"] { margin: 1.5rem 0; width: 100%; }
+    button { background: #8b6b3e; color: white; border: none; padding: 14px 28px; border-radius: 30px; font-weight: bold; font-size: 1rem; cursor: pointer; width: 100%; transition: background 0.2s; }
+    button:hover { background: #735732; }
+    #status { margin-top: 1.2rem; font-weight: 600; color: #2e7d32; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Our Wedding Gallery</h1>
+    <p>Share your favorite memories and photos from our special day!</p>
+    <input type="file" id="photoInput" accept="image/*" multiple>
+    <br>
+    <button onclick="uploadPhotos()">Upload Photos</button>
+    <p id="status"></p>
+  </div>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxojRg81neShQPsPH4wvsAdkRvzIsELjZCChJjA_OPcmRWw71qCD1mFG0dHDRcksEJl/exec";
+
+    async function uploadPhotos() {
+      const input = document.getElementById("photoInput");
+      const status = document.getElementById("status");
+      if (!input.files.length) return alert("Please select at least one photo!");
+
+      status.innerText = "Uploading your photos...";
+
+      for (let file of input.files) {
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+          const base64 = e.target.result.split(',')[1];
+          const payload = { file: base64, mimeType: file.type, fileName: file.name };
+          
+          try {
+            await fetch(SCRIPT_URL, {
+              method: 'POST',
+              body: JSON.stringify(payload)
+            });
+            status.innerText = "Upload Complete! Thank you ❤️";
+          } catch (err) {
+            status.innerText = "Error uploading. Please try again.";
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</body>
+</html>
