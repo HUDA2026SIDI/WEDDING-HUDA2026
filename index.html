@@ -1,541 +1,362 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dauda & Hussaina - Wedding Album</title>
+  <title>Hussaina & Dauda Wedding Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --brand-dark: #3b2319;       /* Deep Silk Chocolate */
-      --brand-rust: #5a2318;       /* Rich Burnt Rust */
-      --brand-copper: #b85d30;     /* Warm Terracotta */
-      --bg-cream: #f8f3ed;         /* Light Champagne Silk Background */
-      --card-bg: #efe6dc;          /* Warm Silk Accent Box */
-      --text-dark: #231610;        
-      --text-muted: #6e584c;      
+      --bg-champagne: #F5EFE6;
+      --terracotta-burnt: #B84A1C;
+      --bronze-chocolate: #4A2810;
+      --champagne-gold: #CDB38B;
+      --card-white: #FFFFFF;
+      --text-dark: #2C1A0E;
+      --text-muted: #705B4E;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
-      background-color: var(--bg-cream);
-      color: var(--text-dark);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-    }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-champagne); color: var(--text-dark); -webkit-font-smoothing: antialiased; }
 
     .app-container {
       width: 100%;
-      max-width: 480px;
+      max-width: 500px;
       min-height: 100vh;
-      background-color: var(--bg-cream);
+      margin: 0 auto;
+      background-color: var(--bg-champagne);
       display: flex;
       flex-direction: column;
       position: relative;
-      box-shadow: 0 0 25px rgba(0,0,0,0.08);
-      overflow: hidden;
+      box-shadow: 0 0 25px rgba(0,0,0,0.06);
     }
 
-    /* ================= PAGE 1: HOME PAGE ================= */
-    #home-page {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    /* Hero Header using hero.jpg */
-    .hero-section {
-      padding: 30px 20px 20px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: #f1e7dd;
-      border-bottom: 1px solid #e2d3c4;
-    }
-
-    .hero-logo {
-      max-width: 240px;
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 12px;
-    }
-
-    .hero-tagline {
-      font-size: 0.9rem;
-      font-style: italic;
-      color: var(--brand-rust);
-      opacity: 0.9;
-    }
-
-    /* Main Content Body */
-    .content-section {
-      padding: 32px 24px;
-      text-align: center;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .star-icon {
-      color: var(--brand-copper);
-      font-size: 1.2rem;
-      margin-bottom: 14px;
-    }
-
-    .main-heading {
-      font-family: Georgia, serif;
-      font-size: 1.85rem;
-      color: var(--brand-dark);
-      margin-bottom: 12px;
-      line-height: 1.3;
-      font-weight: normal;
-    }
-
-    .sub-text {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.5;
-      margin-bottom: 32px;
-      max-width: 340px;
-    }
-
-    /* Main Share Button */
-    .btn-share {
-      background-color: var(--brand-rust);
-      color: #ffffff;
-      border: none;
-      font-weight: 600;
-      padding: 18px 28px;
-      border-radius: 35px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.05rem;
-      box-shadow: 0 6px 18px rgba(90, 35, 24, 0.28);
-      cursor: pointer;
-      width: 100%;
-      justify-content: center;
-      margin-bottom: 22px;
-      transition: transform 0.1s ease;
-    }
-
-    .btn-share:active {
-      transform: scale(0.98);
-      background-color: var(--brand-dark);
-    }
-
-    .link-view {
-      color: var(--brand-rust);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      margin-bottom: 24px;
-    }
-
-    /* Bottom Footer Bar */
-    .footer-bar {
-      margin-top: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 24px;
-      border-top: 1px solid #e2d3c4;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      background-color: #f1e7dd;
-    }
-
-    /* ================= PAGE 2: GALLERY PAGE ================= */
-    #memories-page {
-      display: none;
-      flex-direction: column;
-      min-height: 100vh;
-      background-color: var(--bg-cream);
-    }
-
-    .gallery-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      border-bottom: 1px solid #e2d3c4;
-      background-color: #ffffff;
-    }
-
-    .nav-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 1px solid #d8c6b5;
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1.1rem;
-      color: var(--brand-dark);
-    }
-
-    .gallery-title-container {
-      text-align: center;
-    }
-
-    .gallery-subtitle {
-      font-size: 0.75rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--brand-copper);
-      font-weight: bold;
-    }
-
-    .gallery-title {
-      font-family: Georgia, serif;
-      font-size: 1.2rem;
-      color: var(--brand-dark);
-    }
-
-    .gallery-body {
-      padding: 24px 20px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .gallery-frame {
-      width: 100%;
-      height: 60vh;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .floating-share-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background-color: var(--brand-rust);
-      color: #ffffff;
-      border: none;
-      padding: 14px 22px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-      cursor: pointer;
-      z-index: 90;
-    }
-
-    /* ================= UPLOAD BOTTOM SHEET ================= */
-    .sheet-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0, 0, 0, 0.45);
-      z-index: 500;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .sheet-card {
-      background-color: #ffffff;
-      width: 100%;
-      max-width: 480px;
-      border-top-left-radius: 24px;
-      border-top-right-radius: 24px;
-      padding: 20px 24px 32px;
+    /* Hero Section */
+    .hero {
       position: relative;
-      animation: slideUp 0.25s ease-out;
+      height: 50vh;
+      min-height: 360px;
+      background: linear-gradient(180deg, rgba(44, 26, 14, 0.25) 0%, rgba(44, 26, 14, 0.8) 100%), url('hero.jpg') center/cover no-repeat;
+      display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+      padding: 2.5rem 1.5rem; text-align: center; color: #ffffff;
+    }
+    .hero-sub { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--champagne-gold); margin-bottom: 0.4rem; font-weight: 600; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; line-height: 1.1; margin-bottom: 0.5rem; }
+    .hero-title span { color: var(--champagne-gold); font-style: italic; }
+    .hero-date { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; margin-bottom: 0.8rem; opacity: 0.95; color: var(--champagne-gold); }
+    .hero-italic { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; opacity: 0.9; }
+
+    /* Content Section */
+    .content { padding: 2.5rem 1.5rem 2rem; text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; }
+    .sparkle { color: var(--terracotta-burnt); font-size: 1.2rem; margin-bottom: 0.8rem; }
+    .main-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--bronze-chocolate); line-height: 1.2; margin-bottom: 0.8rem; }
+    .description { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; }
+
+    /* Main CTA Button */
+    .btn-main {
+      background: linear-gradient(135deg, var(--terracotta-burnt), #933610);
+      color: white; border: none; padding: 1.1rem 2rem; border-radius: 50px;
+      font-size: 1rem; font-weight: 600; width: 100%; max-width: 340px;
+      cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 10px 25px rgba(184, 74, 28, 0.3); transition: transform 0.2s;
+    }
+    .btn-main:active { transform: scale(0.98); }
+
+    /* View Gallery Link & QR Trigger */
+    .view-gallery-btn {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 1.5rem;
+      background: none; border: none; color: var(--bronze-chocolate);
+      font-weight: 600; font-size: 0.95rem; cursor: pointer; text-decoration: none;
     }
 
-    @keyframes slideUp {
-      from { transform: translateY(100%); }
-      to { transform: translateY(0); }
-    }
-
-    .sheet-drag-handle {
-      width: 40px;
-      height: 4px;
-      background-color: #d8c6b5;
-      border-radius: 2px;
-      margin: 0 auto 16px;
-    }
-
-    .sheet-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 20px;
-    }
-
-    .sheet-option {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: var(--card-bg);
-      padding: 16px;
-      border-radius: 16px;
-      margin-bottom: 12px;
-      text-decoration: none;
-      color: var(--text-dark);
-      cursor: pointer;
-    }
-
-    .sheet-option-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .sheet-icon-box {
-      width: 44px;
-      height: 44px;
-      background-color: #ffffff;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-    }
-
-    .sheet-option-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--brand-dark);
-    }
-
-    .sheet-option-sub {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    /* ================= QR POPUP MODAL ================= */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0,0,0,0.7);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .modal-card {
-      background: white;
-      padding: 24px;
+    .qr-trigger-btn {
+      margin-top: 1.5rem;
+      background: #EFE5D8;
+      border: 1px solid var(--champagne-gold);
+      color: var(--bronze-chocolate);
+      padding: 8px 18px;
       border-radius: 20px;
-      text-align: center;
-      max-width: 320px;
-      width: 100%;
-      position: relative;
-    }
-
-    .modal-card img {
-      width: 100%;
-      max-width: 220px;
-      height: auto;
-      margin: 16px 0;
-      border-radius: 12px;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 14px; right: 18px;
-      background: none;
-      border: none;
-      font-size: 1.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
       cursor: pointer;
-      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    #camera-photo-input, #camera-video-input {
-      display: none;
+    /* Footer Bar */
+    .footer-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 1.5rem; border-top: 1px solid #EFE5D8;
+      font-size: 0.85rem; color: var(--text-muted); background-color: #FAF5EE;
     }
+
+    /* Modal Sheet */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+      display: none; justify-content: flex-end; flex-direction: column; z-index: 1000;
+    }
+    .modal-sheet {
+      background: var(--bg-champagne); border-radius: 28px 28px 0 0; padding: 2rem 1.5rem 2.5rem;
+      animation: slideUp 0.3s ease-out; position: relative; max-width: 500px; margin: 0 auto; width: 100%;
+    }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+    .modal-handle { width: 40px; height: 4px; background: #D9CEC1; border-radius: 2px; margin: 0 auto 1.5rem; }
+    .close-btn { position: absolute; right: 1.5rem; top: 1.5rem; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #E3D7C9; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--bronze-chocolate); }
+
+    .option-card {
+      background: var(--card-white); border-radius: 18px; padding: 1.1rem 1.2rem;
+      margin-bottom: 0.8rem; display: flex; align-items: center; gap: 1rem;
+      border: 1px solid #EFE5D8; cursor: pointer; text-align: left; transition: background 0.2s;
+    }
+    .option-card:hover { background: #FAF5EE; }
+    .option-icon { width: 44px; height: 44px; background: #F8EFE6; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+    .option-title { font-weight: 600; color: var(--bronze-chocolate); font-size: 0.95rem; }
+    .option-sub { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Gallery Section */
+    #gallerySection { display: none; padding: 0 0 4rem; width: 100%; text-align: center; }
+    .gallery-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem; border-bottom: 1px solid #EFE5D8; background: #FFFFFF;
+    }
+    .nav-btn {
+      width: 40px; height: 40px; border-radius: 50%; border: 1px solid #E3D7C9;
+      background: white; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--bronze-chocolate);
+    }
+    .gallery-body { padding: 1.8rem 1.5rem; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 1.5rem; }
+    .gallery-item { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; background: #e0d5c8; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+
+    /* Floating Snap / Upload Button in Gallery */
+    .floating-share-btn {
+      position: fixed; bottom: 24px; right: 24px;
+      background: linear-gradient(135deg, var(--terracotta-burnt), #933610);
+      color: #ffffff; border: none; padding: 14px 22px; border-radius: 30px;
+      font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;
+      box-shadow: 0 6px 18px rgba(184, 74, 28, 0.4); cursor: pointer; z-index: 90;
+    }
+
+    /* QR Code Popup Overlay */
+    .qr-modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+      display: none; justify-content: center; align-items: center; padding: 20px; z-index: 1001;
+    }
+    .qr-card {
+      background: white; padding: 24px; border-radius: 20px; text-align: center;
+      max-width: 320px; width: 100%; position: relative;
+    }
+    .qr-card img { width: 100%; max-width: 220px; height: auto; margin: 16px 0; border-radius: 12px; }
+
+    #hiddenFileInput { display: none; }
+    #statusText { margin-top: 1rem; font-weight: 600; color: var(--terracotta-burnt); font-size: 0.9rem; }
   </style>
 </head>
 <body>
 
   <div class="app-container">
 
-    <div id="home-page">
-      <div class="hero-section">
-        <img src="hero.jpg" alt="Dauda & Hussaina Wedding Banner" class="hero-logo">
-        <div class="hero-tagline">We'll love to see our memories from your view</div>
-      </div>
-
-      <div class="content-section">
-        <div class="star-icon">✦</div>
-        <h1 class="main-heading">Share the moments<br>you captured</h1>
-        <p class="sub-text">Every smile, dance, laugh, and beautiful detail becomes part of the story we will keep.</p>
-
-        <button class="btn-share" onclick="openUploadSheet()">
-          <span>📷</span> Share Your Memories
-        </button>
-
-        <button class="link-view" onclick="showMemoriesPage()">
-          <span>💛</span> View Wedding Memories →
-        </button>
-      </div>
-
-      <div class="footer-bar">
-        <span>Dauda & Hussaina</span>
-        <a href="javascript:void(0)" onclick="openQRModal()" style="color: var(--brand-rust); text-decoration: none; font-weight: bold;">Wedding QR Code</a>
-      </div>
+    <div class="hero">
+      <div class="hero-sub">Our Wedding</div>
+      <div class="hero-title">Hussaina <span>&</span> Dauda</div>
+      <div class="hero-date">November 2026</div>
+      <div class="hero-italic">We'll love to see our memories from your view</div>
     </div>
 
-    <div id="memories-page">
-      <div class="gallery-header">
-        <button class="nav-btn" onclick="showHomePage()">←</button>
-        <div class="gallery-title-container">
-          <div class="gallery-subtitle">DAUDA & HUSSAINA</div>
-          <div class="gallery-title">Memories from Huda2026</div>
-        </div>
-        <button class="nav-btn" onclick="refreshGallery()">↻</button>
+    <div class="content" id="mainContent">
+      <div class="sparkle">✦</div>
+      <h1 class="main-title">Share the moments<br>you captured</h1>
+      <p class="description">Every smile, dance, laugh and beautiful detail becomes part of the story we will keep.</p>
+      
+      <button class="btn-main" onclick="openModal()">
+        <span>📷</span> Share Your Memories
+      </button>
+
+      <div>
+        <button class="view-gallery-btn" onclick="toggleGallery()">
+          <span>♡</span> View Wedding Memories ➔
+        </button>
       </div>
 
-      <div class="gallery-body">
-        <div class="star-icon">✦</div>
-        <p class="sub-text" style="margin-bottom: 20px;">A wedding album filled with the moments our guests captured on 28 November 2026.</p>
-
-        <iframe id="gallery-iframe" class="gallery-frame" src="https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6"></iframe>
-      </div>
-
-      <button class="floating-share-btn" onclick="openUploadSheet()">
-        <span>📷</span> Share
+      <button class="qr-trigger-btn" onclick="openQRModal()">
+        <span>📱</span> Scan QR Code
       </button>
     </div>
 
-  </div>
-
-  <div class="sheet-overlay" id="uploadSheet" onclick="closeUploadSheet()">
-    <div class="sheet-card" onclick="event.stopPropagation()">
-      <div class="sheet-drag-handle"></div>
-      
-      <div class="sheet-header">
+    <div id="gallerySection">
+      <div class="gallery-header">
+        <button class="nav-btn" onclick="toggleGallery()">←</button>
         <div>
-          <div style="font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: var(--brand-copper); font-weight: bold;">DAUDA & HUSSAINA</div>
-          <h2 style="font-family: Georgia, serif; color: var(--brand-dark); font-size: 1.4rem;">Share Your Memories</h2>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">Choose how you would like to add your moment.</p>
+          <div style="font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--terracotta-burnt); font-weight: 700;">HUSSAINA & DAUDA</div>
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--bronze-chocolate); font-weight: 600;">November 2026</div>
         </div>
-        <button class="close-btn" onclick="closeUploadSheet()">&times;</button>
+        <button class="nav-btn" onclick="loadGalleryPhotos()">↻</button>
       </div>
 
-      <label for="camera-photo-input" class="sheet-option">
-        <div class="sheet-option-left">
-          <div class="sheet-icon-box">📷</div>
-          <div>
-            <div class="sheet-option-title">Take a Photo</div>
-            <div class="sheet-option-sub">Open your camera</div>
-          </div>
+      <div class="gallery-body">
+        <div style="font-size: 1.2rem; color: var(--terracotta-burnt);">✦</div>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--bronze-chocolate); margin: 0.3rem 0;">Memories Captured</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">A wedding album filled with moments captured by our guests.</p>
+        
+        <div class="gallery-grid" id="photoContainer">
+          <p style="grid-column: span 2; color: var(--text-muted); padding: 2rem;">Loading uploaded memories...</p>
         </div>
-        <span style="color: var(--text-muted);">›</span>
-      </label>
+      </div>
 
-      <a href="https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6" target="_blank" class="sheet-option">
-        <div class="sheet-option-left">
-          <div class="sheet-icon-box">🖼️</div>
-          <div>
-            <div class="sheet-option-title">Upload Photos</div>
-            <div class="sheet-option-sub">Choose one or several photos</div>
-          </div>
-        </div>
-        <span style="color: var(--text-muted);">›</span>
-      </a>
+      <button class="floating-share-btn" onclick="openModal()">
+        <span>📷</span> Snap Photo
+      </button>
+    </div>
 
-      <label for="camera-video-input" class="sheet-option">
-        <div class="sheet-option-left">
-          <div class="sheet-icon-box">🎥</div>
-          <div>
-            <div class="sheet-option-title">Record a Video</div>
-            <div class="sheet-option-sub">Capture a moment now</div>
-          </div>
-        </div>
-        <span style="color: var(--text-muted);">›</span>
-      </label>
+    <div class="footer-bar">
+      <span>Hussaina & Dauda</span>
+      <a href="javascript:void(0)" onclick="openQRModal()" style="color: var(--terracotta-burnt); text-decoration: none; font-weight: 700;">Wedding QR Code</a>
+    </div>
 
-      <a href="https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6" target="_blank" class="sheet-option">
-        <div class="sheet-option-left">
-          <div class="sheet-icon-box">📁</div>
-          <div>
-            <div class="sheet-option-title">Upload Videos</div>
-            <div class="sheet-option-sub">Choose one or several videos</div>
-          </div>
+  </div>
+
+  <div class="modal-overlay" id="uploadModal">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <button class="close-btn" onclick="closeModal()">✕</button>
+      
+      <div style="font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--terracotta-burnt); font-weight: 600; margin-bottom: 0.3rem;">Hussaina & Dauda</div>
+      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--bronze-chocolate); margin-bottom: 0.4rem;">Share Your Memories</h2>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Choose how you would like to add your moment.</p>
+
+      <div class="option-card" onclick="triggerUpload('image/*', 'environment')">
+        <div class="option-icon">📷</div>
+        <div style="flex: 1;">
+          <div class="option-title">Take a Photo</div>
+          <div class="option-sub">Open your camera</div>
         </div>
-        <span style="color: var(--text-muted);">›</span>
-      </a>
+        <div style="color: #ccc;">❯</div>
+      </div>
+
+      <div class="option-card" onclick="triggerUpload('image/*', null)">
+        <div class="option-icon">🖼️</div>
+        <div style="flex: 1;">
+          <div class="option-title">Upload Photos</div>
+          <div class="option-sub">Choose one or several photos</div>
+        </div>
+        <div style="color: #ccc;">❯</div>
+      </div>
+
+      <div class="option-card" onclick="triggerUpload('video/*', 'environment')">
+        <div class="option-icon">📹</div>
+        <div style="flex: 1;">
+          <div class="option-title">Record a Video</div>
+          <div class="option-sub">Capture a moment now</div>
+        </div>
+        <div style="color: #ccc;">❯</div>
+      </div>
+
+      <div class="option-card" onclick="triggerUpload('video/*', null)">
+        <div class="option-icon">📁</div>
+        <div style="flex: 1;">
+          <div class="option-title">Upload Videos</div>
+          <div class="option-sub">Choose one or several videos</div>
+        </div>
+        <div style="color: #ccc;">❯</div>
+      </div>
+
+      <p id="statusText"></p>
     </div>
   </div>
 
-  <input type="file" id="camera-photo-input" accept="image/*" capture="environment" onchange="redirectToAlbum()">
-  <input type="file" id="camera-video-input" accept="video/*" capture="environment" onchange="redirectToAlbum()">
-
-  <div class="modal-overlay" id="qrModal" onclick="closeQRModal()">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="close-btn" onclick="closeQRModal()">&times;</button>
-      <h3 style="font-family: Georgia, serif; color: var(--brand-dark);">Scan to Join Album</h3>
+  <div class="qr-modal-overlay" id="qrModal" onclick="closeQRModal()">
+    <div class="qr-card" onclick="event.stopPropagation()">
+      <button class="close-btn" onclick="closeQRModal()">✕</button>
+      <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--bronze-chocolate);">Scan to Join Album</h3>
       <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Let nearby guests scan this code with their camera!</p>
       
       <img src="qr-code.png" alt="Wedding QR Code">
       
-      <p style="font-size: 0.8rem; color: var(--brand-copper); font-weight: bold; letter-spacing: 1px;">DAUDA & HUSSAINA</p>
+      <p style="font-size: 0.8rem; color: var(--terracotta-burnt); font-weight: 700; letter-spacing: 1.5px;">HUSSAINA & DAUDA</p>
     </div>
   </div>
 
+  <input type="file" id="hiddenFileInput" multiple onchange="handleFiles(this.files)">
+
   <script>
-    function showMemoriesPage() {
-      document.getElementById('home-page').style.display = 'none';
-      document.getElementById('memories-page').style.display = 'flex';
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxojRg81neShQPsPH4wvsAdkRvzIsELjZCChJjA_OPcmRWw71qCD1mFG0dHDRcksEJl/exec";
+
+    function openModal() { document.getElementById('uploadModal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('uploadModal').style.display = 'none'; }
+
+    function openQRModal() { document.getElementById('qrModal').style.display = 'flex'; }
+    function closeQRModal() { document.getElementById('qrModal').style.display = 'none'; }
+
+    function triggerUpload(acceptType, captureMode) {
+      const input = document.getElementById('hiddenFileInput');
+      input.accept = acceptType;
+      if (captureMode) { input.setAttribute('capture', captureMode); } 
+      else { input.removeAttribute('capture'); }
+      input.click();
+    }
+
+    async function handleFiles(files) {
+      if (!files.length) return;
+      const status = document.getElementById('statusText');
+      status.innerText = "Uploading your memories...";
+
+      for (let file of files) {
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+          const base64 = e.target.result.split(',')[1];
+          const payload = { file: base64, mimeType: file.type, fileName: file.name };
+
+          try {
+            await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+            status.innerText = "Upload Complete! Thank you ❤️";
+            setTimeout(() => {
+              closeModal();
+              status.innerText = "";
+              loadGalleryPhotos();
+            }, 1500);
+          } catch (err) {
+            status.innerText = "Error uploading. Please try again.";
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function toggleGallery() {
+      const main = document.getElementById('mainContent');
+      const gallery = document.getElementById('gallerySection');
+      if (gallery.style.display === 'block') {
+        gallery.style.display = 'none';
+        main.style.display = 'flex';
+      } else {
+        main.style.display = 'none';
+        gallery.style.display = 'block';
+        loadGalleryPhotos();
+      }
       window.scrollTo(0, 0);
     }
 
-    function showHomePage() {
-      document.getElementById('memories-page').style.display = 'none';
-      document.getElementById('home-page').style.display = 'flex';
-      window.scrollTo(0, 0);
-    }
-
-    function refreshGallery() {
-      const iframe = document.getElementById('gallery-iframe');
-      iframe.src = iframe.src;
-    }
-
-    function openUploadSheet() {
-      document.getElementById('uploadSheet').style.display = 'flex';
-    }
-
-    function closeUploadSheet() {
-      document.getElementById('uploadSheet').style.display = 'none';
-    }
-
-    function openQRModal() {
-      document.getElementById('qrModal').style.display = 'flex';
-    }
-
-    function closeQRModal() {
-      document.getElementById('qrModal').style.display = 'none';
-    }
-
-    function redirectToAlbum() {
-      window.open('https://photos.app.goo.gl/ebyhtizWT4dM1ECQ6', '_blank');
+    async function loadGalleryPhotos() {
+      const container = document.getElementById('photoContainer');
+      container.innerHTML = '<p style="grid-column: span 2; color: var(--text-muted); padding: 2rem;">Loading uploaded memories...</p>';
+      
+      try {
+        const response = await fetch(SCRIPT_URL);
+        const data = await response.json();
+        
+        if (data && data.photos && data.photos.length > 0) {
+          container.innerHTML = data.photos.map(url => `<img src="${url}" class="gallery-item" alt="Wedding Memory">`).join('');
+        } else {
+          container.innerHTML = '<p style="grid-column: span 2; color: var(--text-muted); padding: 2rem;">No uploaded photos yet. Be the first to share!</p>';
+        }
+      } catch (err) {
+        container.innerHTML = '<p style="grid-column: span 2; color: var(--text-muted); padding: 2rem;">No memories found yet. Tap Snap Photo to upload!</p>';
+      }
     }
   </script>
-
 </body>
 </html>
